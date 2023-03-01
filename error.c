@@ -17,3 +17,9 @@ void	p_error(char* err)
 	perror(err);
 	exit (1);
 }
+
+int	ft_printerr(char* err)
+{
+	write(2, err, ft_strlen(err));
+	return (1);
+}
