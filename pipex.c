@@ -6,7 +6,7 @@
 /*   By: thong-bi <thong-bi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 16:05:47 by thong-bi          #+#    #+#             */
-/*   Updated: 2023/02/21 16:05:47 by thong-bi         ###   ########.fr       */
+/*   Updated: 2023/03/06 18:46:05 by thong-bi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int	main(int argc, char *argv[], char *envp[])
 	pipex.pid2 = fork();
 	if (pipex.pid2 == 0)
 		process_two(pipex, argv, envp);
-	close(pipe->end[0]);
-	close(pipe->end[1]);
+	close(pipex.end[0]);
+	close(pipex.end[1]);
 	waitpid(pipex.pid1, NULL, 0);
 	wiatpid(pipex.pid2, NULL, 0);
 	free_parent(&pipex);
