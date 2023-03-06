@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thong-bi <thong-bi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 16:17:21 by thong-bi          #+#    #+#             */
-/*   Updated: 2023/03/07 00:43:01 by thong-bi         ###   ########.fr       */
+/*   Created: 2023/03/07 00:05:09 by thong-bi          #+#    #+#             */
+/*   Updated: 2023/03/07 00:13:05 by thong-bi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	p_error(char *err)
+void	free_parent(t_pipex pipex)
 {
-	perror(err);
-	exit (1);
+	int	i;
+
+	i = 0;
+	close(pipex.infile);
+	close(pipex.outfile);
+	while (pipex.cmd_paths[i++])
+		free(pipex.cmd_paths[i]);
+	free(pipex.cmd_paths);
 }
 
-int	ft_printerr(char *err)
+void	free_process(t_pipex pipex)
 {
-	write(2, err, ft_strlen(err));
-	return (1);
+	int	i;
+
+	i = 0;
+	while (pipex.cmd_args[i++])
+		free(pipex.cmd_args[i]);
+	free(pipex.cmd_args);
+	free(pipex.cmd);
 }

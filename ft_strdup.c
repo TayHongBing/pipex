@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thong-bi <thong-bi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 16:17:21 by thong-bi          #+#    #+#             */
-/*   Updated: 2023/03/07 00:43:01 by thong-bi         ###   ########.fr       */
+/*   Created: 2023/01/06 15:20:23 by jchu              #+#    #+#             */
+/*   Updated: 2023/03/07 01:10:52 by thong-bi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	p_error(char *err)
+char	*ft_strdup(const char *s1)
 {
-	perror(err);
-	exit (1);
-}
+	int		idx;
+	char	*buffer;
+	int		len;
 
-int	ft_printerr(char *err)
-{
-	write(2, err, ft_strlen(err));
-	return (1);
+	len = ft_strlen(s1);
+	buffer = (char *)malloc(sizeof(char) * (len + 1));
+	if (!buffer)
+		return (NULL);
+	idx = 0;
+	while (s1[idx])
+	{
+		buffer[idx] = s1[idx];
+		idx++;
+	}
+	buffer[idx] = '\0';
+	return (buffer);
 }

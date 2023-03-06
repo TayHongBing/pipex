@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thong-bi <thong-bi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/21 16:17:21 by thong-bi          #+#    #+#             */
-/*   Updated: 2023/03/07 00:43:01 by thong-bi         ###   ########.fr       */
+/*   Created: 2023/01/06 15:20:35 by jchu              #+#    #+#             */
+/*   Updated: 2023/03/07 01:11:10 by thong-bi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	p_error(char *err)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	perror(err);
-	exit (1);
-}
+	size_t	idx;
 
-int	ft_printerr(char *err)
-{
-	write(2, err, ft_strlen(err));
-	return (1);
+	idx = 0;
+	while (idx < n)
+	{
+		if (s1[idx] && s1[idx] == s2[idx])
+			idx++;
+		else
+			return ((unsigned char)s1[idx] - (unsigned char)s2[idx]);
+	}
+	return (0);
 }
