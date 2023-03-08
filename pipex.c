@@ -6,23 +6,23 @@
 /*   By: thong-bi <thong-bi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 16:05:47 by thong-bi          #+#    #+#             */
-/*   Updated: 2023/03/07 00:46:46 by thong-bi         ###   ########.fr       */
+/*   Updated: 2023/03/08 15:43:53 by thong-bi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-char	*check_path(char *envp[])
+char	*check_path(char **envp)
 {
 	while (ft_strncmp("PATH", *envp, 4))
 		envp++;
-	return (*envp +5);
+	return (*envp + 5);
 }
 
-void	close_ends(t_pipex pipex)
+void	close_ends(t_pipex *pipex)
 {
-	close(pipex.end[0]);
-	close(pipex.end[1]);
+	close(pipex->end[0]);
+	close(pipex->end[1]);
 }
 
 int	main(int argc, char *argv[], char *envp[])
@@ -30,7 +30,7 @@ int	main(int argc, char *argv[], char *envp[])
 	t_pipex	pipex;
 
 	if (argc != 5)
-		return (ft_printstr(ERR_INPUT));
+		return (ft_printerr(ERR_INPUT));
 	pipex.infile = open(argv[1], O_RDONLY);
 	if (pipex.infile < 0)
 		p_error(ERR_INFILE);
@@ -47,9 +47,9 @@ int	main(int argc, char *argv[], char *envp[])
 	pipex.pid2 = fork();
 	if (pipex.pid2 == 0)
 		process_two(pipex, argv, envp);
-	close_ends(pipex);
+	close_ends(&pipex);
 	waitpid(pipex.pid1, NULL, 0);
-	wiatpid(pipex.pid2, NULL, 0);
-	free_parent(pipex);
+	waitpid(pipex.pid2, NULL, 0);
+	free_parent(&pipex);
 	return (0);
 }

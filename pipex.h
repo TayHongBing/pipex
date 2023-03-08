@@ -6,7 +6,7 @@
 /*   By: thong-bi <thong-bi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 15:50:05 by thong-bi          #+#    #+#             */
-/*   Updated: 2023/03/07 01:13:51 by thong-bi         ###   ########.fr       */
+/*   Updated: 2023/03/08 15:18:03 by thong-bi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,13 @@ void	process_one(t_pipex pipex, char *argv[], char *envp[]);
 void	process_two(t_pipex pipex, char *argv[], char *envp[]);
 void	p_error(char *err);
 int		ft_printerr(char *err);
-void	free_parent(t_pipex pipex);
-void	free_process(t_pipex pipex);
+void	free_parent(t_pipex *pipex);
+void	free_process(t_pipex *pipex);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strdup(const char *src);
 char	**ft_split(char const *s, char c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+size_t	ft_strlen(const char *s);
 
 #endif

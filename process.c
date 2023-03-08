@@ -6,13 +6,13 @@
 /*   By: thong-bi <thong-bi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 22:09:52 by thong-bi          #+#    #+#             */
-/*   Updated: 2023/03/07 00:50:33 by thong-bi         ###   ########.fr       */
+/*   Updated: 2023/03/08 15:16:31 by thong-bi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-static char	read_cmd(char **paths, char *cmd_arg)
+static char	*read_cmd(char **paths, char *cmd_arg)
 {
 	char	*tmp;
 	char	*cmd;
@@ -39,7 +39,7 @@ void	process_one(t_pipex pipex, char *argv[], char *envp[])
 	pipex.cmd = read_cmd(pipex.cmd_paths, pipex.cmd_args[0]);
 	if (!pipex.cmd)
 	{
-		free_process(pipex);
+		free_process(&pipex);
 		ft_printerr(ERR_CMD);
 		exit(1);
 	}
@@ -55,7 +55,7 @@ void	process_two(t_pipex pipex, char *argv[], char *envp[])
 	pipex.cmd = read_cmd(pipex.cmd_paths, pipex.cmd_args[0]);
 	if (!pipex.cmd)
 	{
-		free_process(pipex);
+		free_process(&pipex);
 		ft_printerr(ERR_CMD);
 		exit(1);
 	}

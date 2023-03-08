@@ -1,36 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thong-bi <thong-bi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/07 00:05:09 by thong-bi          #+#    #+#             */
-/*   Updated: 2023/03/08 16:02:56 by thong-bi         ###   ########.fr       */
+/*   Created: 2023/01/06 15:20:42 by jchu              #+#    #+#             */
+/*   Updated: 2023/03/08 15:09:06 by thong-bi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	free_parent(t_pipex *pipex)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int	i;
+	size_t	i;
+	size_t	j;
+	size_t	s_len;
+	char	*str;
 
+	if (len > ft_strlen(s) + 1)
+		s_len = ft_strlen(s) + 1;
+	else
+		s_len = len + 1;
+	str = (char *)malloc(sizeof(char) * (s_len));
+	if (!str)
+		return (NULL);
 	i = 0;
-	close(pipex->infile);
-	close(pipex->outfile);
-	while (pipex->cmd_paths[i++])
-		free(pipex->cmd_paths[i]);
-	free(pipex->cmd_paths);
-}
-
-void	free_process(t_pipex *pipex)
-{
-	int	i;
-
-	i = 0;
-	while (pipex->cmd_args[i++])
-		free(pipex->cmd_args[i]);
-	free(pipex->cmd_args);
-	free(pipex->cmd);
+	j = 0;
+	while (s[i])
+	{
+		if (i >= start && j < len)
+		{
+			str[j] = s[i];
+			j++;
+		}
+		i++;
+	}
+	str[j] = 0;
+	return (str);
 }
