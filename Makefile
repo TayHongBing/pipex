@@ -6,7 +6,7 @@
 #    By: thong-bi <thong-bi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/07 14:54:35 by thong-bi          #+#    #+#              #
-#    Updated: 2023/03/08 16:54:35 by thong-bi         ###   ########.fr        #
+#    Updated: 2023/03/14 18:23:32 by thong-bi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,4 +39,5 @@ fclean: clean
 
 re: fclean all
 
+.PHONY: all re clean fclean
 
